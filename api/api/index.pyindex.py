@@ -69,5 +69,8 @@ def download_proxy():
         "Content-Type": "application/octet-stream"
     })
 
+# --- VERCEL SPECIFIC CONFIG ---
+app = app # Ye line Vercel ko app object pehchanne mein madad karti hai
+
 if __name__ == '__main__':
     app.run()
