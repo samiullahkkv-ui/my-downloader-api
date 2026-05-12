@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return jsonify({
         "status": "✅ API Working",
-        "message": "All Platforms Video Downloader API - TikTok No Watermark Support"
+        "message": "All Platforms Video Downloader API"
     })
 
 @app.route('/download', methods=['POST'])
@@ -15,7 +15,6 @@ def download():
     try:
         data = request.get_json()
         url = data.get('url')
-        
         if not url:
             return jsonify({"error": "URL is required"}), 400
 
@@ -25,7 +24,7 @@ def download():
             'format': 'best[height<=720]/best',
             'noplaylist': True,
             'http_headers': {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
             }
         }
 
@@ -37,8 +36,7 @@ def download():
                 "title": info.get('title'),
                 "download_url": info.get('url'),
                 "thumbnail": info.get('thumbnail'),
-                "duration": info.get('duration'),
-                "source": info.get('extractor_key')
+                "duration": info.get('duration')
             })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
